@@ -1,15 +1,30 @@
-// A $( document ).ready() block.
+//
 
 window.onload = function () {
-    $("#quizForm").hide();
+    var correctAnswers = 0;
+        var incorrectAnswers = 0;
+    $("#quizForm1").hide();
+    $("#quizForm2").hide();
     $("#start").on("click", timer.start);
     $("#start").click(function () {
-        $("#quizForm").show();
+        $("#quizForm1").show();
     });
+    $(".quizFormClass input").on("click", function () {
+        
+        answer = ($("input[name=answer]:checked", ".quizFormClass").val());
+        
+        if (answer === "33%" || answer === "Gary Gygax and Dave Arneson") {
+            correctAnswers++;}
+            else { incorrectAnswers++;
 
-    $("#quizForm input").on("click", function () {
-        alert($("input[name=answer]:checked", "quizForm").val());
-    })
+            }
+            console.log(correctAnswers);
+            console.log(incorrectAnswers);
+            $("#quizForm1").hide();
+            $("#quizForm2").show();
+        });
+
+    
 };
 
 var intervalId;
