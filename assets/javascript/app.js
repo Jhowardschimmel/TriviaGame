@@ -1,35 +1,36 @@
 //
 
 window.onload = function () {
-    var correctAnswers = 0;
-    var incorrectAnswers = 0;
+    
     $("#quizForm1").hide();
     $("#quizForm2").hide();
-    setTimeout(timer.stop, 62000);
+    setTimeout(timer.stop, 61500);
     $("#start").on("click", timer.start);
     $("#start").click(function () {
         $("#quizForm1").show();
     });
-    $(".quizFormClass input").on("click", function () {
-
-        answer = ($("input[name=answer]:checked", ".quizFormClass").val());
-
-        if (answer === "33%" || answer === "Gary Gygax and Dave Arneson") {
-            correctAnswers++;
-        }
-        else {
-            incorrectAnswers++;
-
-        }
-        console.log(correctAnswers);
-        console.log(incorrectAnswers);
-        $("#quizForm1").hide();
-        $("#quizForm2").show();
-    });
+    
 
 
 };
+var correctAnswers = 0;
+    var incorrectAnswers = 0;
+$(".quizFormClass input").on("click", function () {
 
+    answer = ($("input[name=answer]:checked", ".quizFormClass").val());
+
+    if (answer === "75%" || answer === "Gary Gygax and Dave Arneson") {
+        correctAnswers++;
+    }
+    else {
+        incorrectAnswers++;
+
+    }
+    console.log(correctAnswers);
+    console.log(incorrectAnswers);
+    $("#quizForm1").hide();
+    $("#quizForm2").show();
+});
 var intervalId;
 
 var clockRunning = false;
@@ -61,12 +62,16 @@ var timer = {
     stop: function () {
 
         // DONE: Use clearInterval to stop the count here and set the clock to not be running.
-        
+
         clearInterval(intervalId);
         clockRunning = false;
         $("#maindiv").append("<h2>Time's Up!</h2>");
         $(".quizFormClass").hide();
         $("#start").hide();
+        $("#correctanswers").text("You got " + correctAnswers +" answers right!");
+        $("#incorrectanswers").text("You got " + incorrectAnswers +" answers wrong");
+        //alert("You got " + correctAnswers +" answers right");
+        //alert("You got " + incorrectAnswers +" answers wrong");
 
     },
 
@@ -82,7 +87,7 @@ var timer = {
 
         // DONE: Use the variable we just created to show the converted time in the "display" div.
         $("#timerdiv").text(converted);
-        
+
     },
     timeConverter: function (t) {
 
@@ -105,5 +110,5 @@ var timer = {
 
 
 
-};
+}
 
